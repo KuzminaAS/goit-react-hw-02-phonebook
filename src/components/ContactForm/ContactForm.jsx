@@ -5,63 +5,31 @@ import { initialValues } from './initialValues';
 
 // import styles from './ContactForm.module.css';
 
-class ContactForm extends Component {
-    
-    state = {
-    name: '',
-    number: ''
+const ContactForm = ({onSubmit}) => {
+
+    const handleSubmit = (values, {resetForm}) => {
+        onSubmit(values);
+        resetForm();
     }
-  
-    handleChange = (evt) => {
-      const { name, value } = evt.currentTarget;
-      this.setState({
-        [name]: value,
-      });
-    }
-  
-   handleSubmit = (event) => {
-     event.preventDefault();
-     this.props.onSubmit(this.state);
-     this.resetForm();
-   }
-  
-  resetForm = () => {
-    this.setState({
-      name: '',
-      number: ''
-    })
-  }
-    render() {
-      return (
+
+    return (
         <Formik
-          onSubmit={this.handleSubmit}
-          initialValues={initialValues}
-        >
-          <Form>
-      <label >
-          Name
-        <Field
-            value={this.state.name}
-            onChange={this.handleChange}
-            {...fields.caseValueName}
-            required
-         /> 
-        </label>
-            
-         <label >
-        Number  
-        <Field
-        value={this.state.number}
-        onChange={this.handleChange}
-        {...fields.caseValueNumber}  
-        required
-        /> 
-        </label>
-      <button {...fields.caseValueButton}>Add contact </button>
+            onSubmit={handleSubmit}
+            initialValues={initialValues} >
+            <Form>
+                <label>
+                    Name
+                    <Field {...fields.name} />
+                </label>
+
+                <label>
+                    Number
+                    <Field {...fields.number} />
+                </label>
+                <button {...fields.caseValueButton}>Add contact</button>
             </Form>
-          </Formik>
+        </Formik>
     )
-     }  
 };
 
 export default ContactForm;
