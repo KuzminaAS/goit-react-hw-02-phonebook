@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from 'react';
 import { Formik, Form, Field } from "formik";
 import { fields } from "./fields";
 import { initialValues } from './initialValues';
+import ButtonForm from '../ButtonForm';
 
-// import styles from './ContactForm.module.css';
+import styles from './ContactForm.module.css';
 
 const ContactForm = ({onSubmit}) => {
 
@@ -13,23 +14,24 @@ const ContactForm = ({onSubmit}) => {
     }
 
     return (
-        <Formik
+        <Formik 
             onSubmit={handleSubmit}
             initialValues={initialValues} >
-            <Form>
-                <label>
+            <Form className={styles.form}> 
+                <label className={styles.label}>
                     Name
-                    <Field {...fields.name} />
+                    <Field className={styles.field} {...fields.name} />
                 </label>
 
-                <label>
+                <label className={styles.label}>
                     Number
-                    <Field {...fields.number} />
+                    <Field  className={styles.field} {...fields.number} />
                 </label>
-                <button {...fields.caseValueButton}>Add contact</button>
+                <ButtonForm/> 
             </Form>
         </Formik>
     )
 };
 
 export default ContactForm;
+

@@ -1,12 +1,12 @@
 import React from 'react';
-// import styles from './Filter.module.css';
+import styles from './Filter.module.css';
 
 const Filter = ({value, onChange }) =>  {
    
     return (
-        <label>
+        <label className={styles.label}>
             Find contacts by name
-        <input
+        <input className={styles.input}
             type="text"
             name="name"
             value={value}
